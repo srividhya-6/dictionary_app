@@ -1,23 +1,25 @@
-package com.example.firstapp
+package com.example.firstapp;
 
-import android.content.Intent
-import android.os.Bundle
-import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import androidx.appcompat.app.AppCompatActivity;
 
-class searchActivity : AppCompatActivity() {
-    private lateinit var etSearch:EditText
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_search)
+public class searchActivity extends AppCompatActivity {
+    private EditText etSearch;
 
-        val btnSearch = findViewById<Button>(R.id.btnSearch)
-        etSearch=findViewById(R.id.etSearch)
-        btnSearch.setOnClickListener {
-            val intent = Intent(this, resultActivity::class.java)
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_search);
 
-            intent.putExtra("word",etSearch.text.toString())
-            startActivity(intent)
-        }
+        Button btnSearch = findViewById(R.id.btnSearch);
+        etSearch = findViewById(R.id.etSearch);
+        btnSearch.setOnClickListener(v -> {
+            Intent intent = new Intent(this, resultActivity.class);
+            intent.putExtra("word", etSearch.getText().toString());
+            startActivity(intent);
+        });
     }
 }
